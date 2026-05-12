@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Add New Subject</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('manage_subjects') }}">
+                    <div class="mb-3">
+                        <label for="class_id" class="form-label">Select Class</label>
+                        <select class="form-select" id="class_id" name="class_id" required>
+                            <option value="" selected disabled>Choose a class...</option>
+                            {% for class in classes %}
+                            <option value="{{ class.id }}">{{ class.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Subject Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                            placeholder="e.g. Engineering Mathematics" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Add Subject</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="mb-0">Existing Subjects</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Subject Name</th>
+                            <th>Class</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if subjects %}
+                        {% for subject in subjects %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ subject.name }}</td>
+                            <td><span class="badge bg-secondary">{{ subject.class_val.name }}</span></td>
+                            <td>
+                                <a href="{{ url_for('delete_subject', subject_id=subject.id) }}"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this subject?')">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">No subjects found. Add one to get started.
+                            </td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

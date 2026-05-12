@@ -1,0 +1,383 @@
+:root {
+    /* Light Mode Variables */
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --text-color: #2d3748;
+    --text-muted: #718096;
+
+    /* Glassmorphism Card */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-border: rgba(255, 255, 255, 0.5);
+    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --modal-bg: #ffffff;
+
+    /* Navbar */
+    --navbar-bg: rgba(255, 255, 255, 0.85);
+    --navbar-text: #4a5568;
+    --navbar-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+
+    /* Accents */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #1fa2ff 0%, #12d8fa 100%, #a6ffcb 100%);
+    --danger-gradient: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --warning-gradient: linear-gradient(135deg, #fce38a 0%, #f38181 100%);
+
+    --accent-color: #667eea;
+    --border-radius: 16px;
+
+    /* Inputs */
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-border: #e2e8f0;
+}
+
+[data-theme="dark"] {
+    /* Dark Mode Variables */
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --text-color: #f7fafc;
+    --text-muted: #a0aec0;
+
+    /* Glassmorphism Card */
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    --modal-bg: #1e293b;
+    -webkit-text-fill-color: #ffffff;
+
+    /* Navbar */
+    --navbar-bg: rgba(15, 23, 42, 0.85);
+    --navbar-text: #e2e8f0;
+    --navbar-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+
+    /* Inputs */
+    --input-bg: rgba(30, 41, 59, 0.8);
+    --input-border: #475569;
+}
+
+body {
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    transition: color 0.3s ease;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: var(--navbar-shadow);
+    border-bottom: 1px solid var(--card-border);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    color: var(--navbar-text) !important;
+    font-weight: 500;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+    transform: translateY(-2px);
+}
+
+/* Glassmorphism Cards */
+.card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.card-title {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid var(--card-border);
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    color: white;
+}
+
+.btn-success {
+    background: var(--success-gradient);
+    color: white;
+}
+
+.btn-danger {
+    background: var(--danger-gradient);
+    color: white;
+}
+
+.btn-warning {
+    background: var(--warning-gradient);
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: transparent;
+}
+
+/* Tables */
+.table {
+    color: var(--text-color);
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    /* Spacing between rows */
+}
+
+.table th {
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    border-bottom: none;
+    padding-bottom: 1rem;
+}
+
+.table tbody tr {
+    background: var(--card-bg);
+    /* Rows look like mini cards */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.table tbody tr:hover {
+    transform: scale(1.01);
+    background: rgba(255, 255, 255, 0.05);
+    /* Slight highlight */
+}
+
+.table td {
+    vertical-align: middle;
+    border: none;
+    padding: 1rem;
+}
+
+.table td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.table td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 2px solid var(--input-border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    transition: all 0.3s;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.container {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background: var(--primary-gradient);
+    color: white;
+    transform: rotate(15deg) scale(1.1);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Helper Classes */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5em 0.8em;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Login Page Specifics */
+.card-header {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+}
+
+/* Theme Toggle Animation */
+@keyframes rotate-icon {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotate {
+    animation: rotate-icon 0.5s ease-in-out;
+}
+
+/* Modal Fixes */
+.modal-content {
+    background-color: var(--modal-bg) !important;
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(5px);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--card-border);
+}
+
+.btn-close {
+    background-color: white;
+    /* Ensure visibility if it uses an SVG that might disappear on dark bg, 
+       though bootstrap usually handles this with filter invert. 
+       Let's leave it default for now or adjust if user reports. */
+}
+
+/* Table Dark Mode Fixes */
+.table {
+    border-color: var(--card-border) !important;
+}
+
+.table th,
+.table td {
+    border-color: var(--card-border) !important;
+    background-color: transparent !important;
+    /* Allow row bg to show */
+    color: var(--text-color) !important;
+}
+
+/* Fix stripe/hover inheritance from Bootstrap */
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-accent-bg: transparent;
+    color: var(--text-color);
+}
+
+.table-hover>tbody>tr:hover>* {
+    --bs-table-accent-bg: rgba(255, 255, 255, 0.05);
+    color: var(--text-color);
+}
+
+/* Dropdown Menu Fixes */
+.dropdown-menu {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(16px);
+}
+
+.dropdown-item {
+    color: var(--text-color);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}

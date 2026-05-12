@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h2>Manage Teachers</h2>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Add Teacher Form -->
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Add New Teacher</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Add Teacher</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- List Teachers -->
+    <div class="col-md-8">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Existing Teachers</h5>
+            </div>
+            <div class="card-body">
+                {% if teachers %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for teacher in teachers %}
+                            <tr>
+                                <td>{{ teacher.name }}</td>
+                                <td>{{ teacher.email }}</td>
+                                <td>
+                                    {% if teacher.is_admin %}
+                                    <span class="badge bg-danger">Admin</span>
+                                    {% else %}
+                                    <span class="badge bg-info">Teacher</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if teacher.id != current_user.id %}
+                                    <a href="{{ url_for('edit_teacher', teacher_id=teacher.id) }}"
+                                        class="btn btn-sm btn-warning">Edit</a>
+                                    <a href="{{ url_for('delete_teacher', teacher_id=teacher.id) }}"
+                                        class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure using want to delete this teacher?')">Delete</a>
+                                    {% else %}
+                                    <a href="{{ url_for('edit_teacher', teacher_id=teacher.id) }}"
+                                        class="btn btn-sm btn-warning">Edit</a>
+                                    <span class="text-muted text-small ms-2">Current User</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted">No teachers found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

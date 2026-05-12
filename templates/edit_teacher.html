@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-12">
+        <h2>Edit Teacher</h2>
+        <a href="{{ url_for('manage_teachers') }}" class="btn btn-secondary">Back to Teachers</a>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">Edit Teacher Details</h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ teacher.name }}"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ teacher.email }}"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" id="password" name="password"
+                            placeholder="Leave blank to keep current password">
+                        <div class="form-text">Only enter data here if you want to change the password.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Update Teacher</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
