@@ -42,7 +42,7 @@ A web-based application built with Flask for managing student attendance, classe
 
 1.  **Clone the repository:**
     ```bash
-    
+    git clone
     cd attendance-system
     ```
 
